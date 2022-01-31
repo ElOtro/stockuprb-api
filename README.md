@@ -32,4 +32,6 @@ Let's think about a bank account. You maybe have multiple bank accounts. The one
 
 ## TODO
 
-- Dockerize 
+- Dockerize
+- Project stages
+- Printable invoice in PDF (Prawn) 
