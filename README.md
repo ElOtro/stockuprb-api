@@ -22,6 +22,12 @@ rake db:create db:migrate and then rails s
 If you want to fill database tables with test data, run: 
 rake db:seed
 
+## FAQ
+
+Why do I use the jsonb type in bank_accounts, contacts? 
+
+Let's think about a bank account. You maybe have multiple bank accounts. The one is in a national currency, other is in dollars. They definitely may have different attributes, so to make your life easier, it would be nice define them in the jsonb type.
+
 ## TODO
 
 - Dockerize 
