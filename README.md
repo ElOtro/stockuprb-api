@@ -2,7 +2,7 @@
 
 This is an application that is used to create and store your invoices even if you have many organisations and bank accounts.
 
-Implementation on Golang (Go) <a href="https://github.com/ElOtro/stockupgo-api">here</a>
+Implementation in Golang (Go) <a href="https://github.com/ElOtro/stockupgo-api">here</a>
 
 Database schema: <a href="https://github.com/ElOtro/stockuprb-api/blob/master/erd.pdf">erd.pdf</a>
 
