@@ -30,6 +30,10 @@ Why do I use the jsonb type in bank_accounts, contacts?
 
 Let's think about a bank account. You maybe have multiple bank accounts. The one is a national currency account, other is dollar account. They definitely may have different attributes, so to make your life easier, it would be nice define them in the jsonb type.
 
+What are start_at, end_at in agreements for?
+
+To store "history" changing company contacts.
+
 ## TODO
 
 - Dockerize
