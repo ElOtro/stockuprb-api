@@ -1,0 +1,1426 @@
+{
+	"info": {
+		"_postman_id": "bf4e3943-6fdf-411f-ad34-85a5bcd08909",
+		"name": "StockUp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Agreement",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/companies/1/agreements",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"companies",
+								"1",
+								"agreements"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/companies/1/agreements/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"companies",
+								"1",
+								"agreements",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"agreement\": {\n        \"start_at\": \"2022-01-08T13:45:47+03:00\",\n        \"end_at\": null,\n        \"name\": \"Основной договор\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/companies/1/agreements",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"companies",
+								"1",
+								"agreements"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"agreement\": {\n        \"start_at\": \"2022-01-08T13:45:47+03:00\",\n        \"end_at\": \"2022-01-10T13:45:47+03:00\",\n        \"name\": \"Основной договор\",\n        \"company_id\": 1\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/companies/1/agreements/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"companies",
+								"1",
+								"agreements",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/companies/1/agreements/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"companies",
+								"1",
+								"agreements",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "BankAccounts",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/organisations/1/bank_accounts",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"organisations",
+								"1",
+								"bank_accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/organisations/1/bank_accounts/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"organisations",
+								"1",
+								"bank_accounts",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"bank_account\": {\n        \"is_default\": false,\n        \"name\": \"Tect\",\n        \"details\": {\n            \"bik\": \"1234567890\",\n            \"account\": \"1234567890\",\n            \"inn\": \"1234567890\",\n            \"kpp\": \"1234567890\",\n            \"corr_account\": \"1234567890\"\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/organisations/1/bank_accounts",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"organisations",
+								"1",
+								"bank_accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"bank_account\": {\n        \"is_default\": false,\n        \"name\": \"Tect (1)\",\n        \"details\": {\n            \"bik\": \"1234567890\",\n            \"account\": \"1234567890\",\n            \"inn\": \"1234567890\",\n            \"kpp\": \"1234567890\",\n            \"corr_account\": \"1234567890\"\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/organisations/1/bank_accounts/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"organisations",
+								"1",
+								"bank_accounts",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/v1/organisations/1/bank_accounts/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"organisations",
+								"1",
+								"bank_accounts",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Companies",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/companies",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/companies/search?q=Inc",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"companies",
+								"search"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "Inc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/companies/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"companies",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"company\": {\n        \"name\": \"Тест компани\",\n        \"full_name\": \"Тест компани\",\n        \"company_type\": 1,\n        \"contacts\": [\n            {\n                \"role\": 1,\n                \"title\": \"директор\",\n                \"name\": \"Иванов\",\n                \"start_at\": \"2022-01-08T13:32:29+03:00\"\n            },\n            {\n                \"role\": 2,\n                \"title\": \"главный бухгалтер\",\n                \"name\": \"Петров\",\n                \"start_at\": \"2022-01-08T13:32:29+03:00\"\n            }\n        ]\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/companies",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"company\": {\n        \"logo\": null,\n        \"name\": \"White-Bechtelar\",\n        \"full_name\": \"White-Bechtelar and Sons Inc\",\n        \"company_type\": 1,\n        \"details\": {\n            \"inn\": \"3774714515\",\n            \"kpp\": \"3646948268\",\n            \"ogrn\": \"123456789\",\n            \"Address\": \"Suite 946 7465 Leigh Well, Cristville, ME 72813-7313\"\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/companies/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"companies",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/companies/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"companies",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Contacts",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/companies/1/contacts",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"companies",
+								"1",
+								"contacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/companies/2/contacts/4",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"companies",
+								"2",
+								"contacts",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"contact\": {\n        \"role\": 1,\n        \"title\": \"менеджер\",\n        \"name\": \"Савельев\",\n        \"phone\": \"+7(911) 753-34-02\",\n        \"email\": \"ya@ya.ru\",\n        \"start_at\": \"2022-01-07T23:21:02+03:00\",\n        \"details\": {\"telegram\": \"@sava\"}\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/companies/2/contacts",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"companies",
+								"2",
+								"contacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"contact\": {\n        \"role\": 1,\n        \"title\": \"менеджер\",\n        \"name\": \"Савельев\",\n        \"phone\": \"+7(911) 753-34-02\",\n        \"email\": \"ya@ya.ru\",\n        \"start_at\": \"2022-01-07T23:21:02+03:00\",\n        \"details\": {\"telegram\": \"@sava11\"}\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/companies/2/contacts/27",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"companies",
+								"2",
+								"contacts",
+								"27"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/companies/2/contacts/27",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"companies",
+								"2",
+								"contacts",
+								"27"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Invoices",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/invoices",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"invoices"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/invoices/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"invoices",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"invoice\": {\n        \"is_active\": false,\n        \"date\": \"2022-01-09T12:45:40+03:00\",\n        \"number\": \"123\",\n        \"organisation_id\": 1,\n        \"bank_account_id\": 1,\n        \"company_id\": 2,\n        \"agreement_id\": 2,\n        \"invoice_items\": [\n            {\n                \"position\": 0,\n                \"product_id\": 1,\n                \"description\": \"Описание строки\",\n                \"unit_id\": 1,\n                \"quantity\": 2,\n                \"price\": 100,\n                \"amount\": 200,\n                \"discount_rate\": 0,\n                \"discount\": 0,\n                \"vat_rate_id\": 4,\n                \"vat\": 40\n            }\n        ]\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/invoices",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"invoices"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"invoice\": {\n        \"is_active\": false,\n        \"date\": \"2022-01-09T12:45:40+03:00\",\n        \"number\": \"777\",\n        \"organisation_id\": 1,\n        \"bank_account_id\": 1,\n        \"company_id\": 2,\n        \"agreement_id\": 2\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/invoices/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"invoices",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/invoices/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"invoices",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "InvoiceItems",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/invoices/1/invoice_items",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"invoices",
+								"1",
+								"invoice_items"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/invoices/1/invoice_items/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"invoices",
+								"1",
+								"invoice_items",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"invoice_item\": {\n        \"position\": 0,\n        \"product_id\": 1,\n        \"description\": \"Описание строки\",\n        \"unit_id\": 1,\n        \"quantity\": 7,\n        \"price\": 100,\n        \"amount\": 200,\n        \"discount_rate\": 0,\n        \"discount\": 0,\n        \"vat_rate_id\": 4,\n        \"vat\": 40\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/invoices/1/invoice_items",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"invoices",
+								"1",
+								"invoice_items"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"invoice_item\": {\n        \"position\": 12,\n        \"product_id\": 3,\n        \"description\": \"Описание строки\",\n        \"unit_id\": 1,\n        \"quantity\": 2,\n        \"price\": 100,\n        \"amount\": 200,\n        \"discount_rate\": 0,\n        \"discount\": 0,\n        \"vat_rate_id\": 4,\n        \"vat\": 40\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/invoices/1/invoice_items/120",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"invoices",
+								"1",
+								"invoice_items",
+								"120"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/invoices/71/invoice_items/117",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"invoices",
+								"71",
+								"invoice_items",
+								"117"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Organisations",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/organisations",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"organisations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/organisations/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"organisations",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"organisation\": {\n        \"name\": \"Тестов Тестович\",\n        \"full_name\": \"IP Тестов\",\n        \"ceo\": \"Иванов\",\n        \"ceo_title\": \"директор\",\n        \"cfo\": \"Петров\",\n        \"cfo_title\": \"главбух\",\n        \"stamp\": \"image\",\n        \"ceo_sign\": null,\n        \"cfo_sign\": null,\n        \"is_vat_payer\": false,\n        \"details\": {\n            \"INN\": \"1234567890\"\n        },\n        \"bank_accounts\": [\n            {\n                \"is_default\": false,\n                \"name\": \"основной\",\n                \"details\": {}\n            },\n            {\n                \"is_default\": true,\n                \"name\": \"дополнительный\",\n                \"details\": {}\n            }\n        ]\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/organisations",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"organisations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Bayer LLC\",\n    \"full_name\": \"Bayer LLC and Sons\",\n    \"ceo\": \"Faustino Hayes VM\",\n    \"ceo_title\": \"ceo\",\n    \"cfo\": \"Gov. Jarod Graham\",\n    \"cfo_title\": \"cfo\",\n    \"stamp\": null,\n    \"ceo_sign\": null,\n    \"cfo_sign\": null,\n    \"is_vat_payer\": true,\n    \"details\": {\n        \"inn\": \"1234567890\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/organisations/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"organisations",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/organisations/7",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"organisations",
+								"7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/products",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/products/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"products",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"product\": {\n        \"is_active\": false,\n        \"product_type\": 1,\n        \"name\": \"Продукт (тест)\",\n        \"description\": \"Оптсание продукта\",\n        \"sku\": \"1234567890\",\n        \"price\": 124.20,\n        \"vat_rate_id\": 1,\n        \"unit_id\": 1\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/v1/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"product\": {\n        \"is_active\": false,\n        \"product_type\": 1,\n        \"name\": \"Продукт (тест)\",\n        \"description\": \"Описание продукта\",\n        \"sku\": \"1234567890\",\n        \"price\": 124.20,\n        \"vat_rate_id\": 1,\n        \"unit_id\": 1\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/products/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"products",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/products/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"products",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Session",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin@example.com\",\n    \"password\": \"12345678\"\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/auth",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin@example.com\",\n    \"password\": \"12345678\"\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/auth/user",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"auth",
+								"user"
+							]
+						},
+						"description": "curl -X POST -d '{\"name\":\"Dmitry\",\"email\":\"admin@example.com\", \"password\": \"12345678\"}' http://localhost:8005/signup"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/users",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Projects",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/projects",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/projects/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"projects",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Project #1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/projects",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"project\": {\n        \"name\": \"Project (web)\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/projects/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"projects",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/projects/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"projects",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Units",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/units",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"units"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}//units/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"",
+								"units",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"unit\": {\n        \"name\": \"метры\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/units",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"units"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"unit\": {\n    \"name\": \"some\"\n}}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/units/4",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"units",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/units/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"units",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "VatRates",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/vat_rates",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"vat_rates"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/vat_rates/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"vat_rates",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"vat_rate\": {\n        \"is_active\": false,\n        \"is_default\": false,\n        \"rate\": 20,\n        \"name\": \"20%\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/vat_rates",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"vat_rates"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"vat_rate\": {\n        \"is_active\": true,\n        \"is_default\": false,\n        \"rate\": \"20.0\",\n        \"name\": \"20%\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/vat_rates/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"vat_rates",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/vat_rates/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"vat_rates",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImV4cCI6MTY0MzYyMTEzNywiaXNzIjoic3RvY2t1cC1hcGkiLCJhdWQiOiJzdG9ja3VwLWFwaSJ9.h7QriSfybxeJKp7QoedvGjD01Q0qr9pUUGXh4GtknJA",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "bseURL",
+			"value": "http://localhost:4000/v1",
+			"type": "string"
+		}
+	]
+}
