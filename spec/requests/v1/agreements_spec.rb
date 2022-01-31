@@ -20,11 +20,11 @@ RSpec.describe "/v1/agreements", type: :request do
   # Agreement. As you add validations to Agreement, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    {start_at: DateTime.now() - 5.months, end_at: nil, name: "012/0303/9293"}
+    {company_id: company.id, start_at: DateTime.now() - 5.months, end_at: nil, name: "012/0303/9293"}
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {start_at: DateTime.now() - 5.months, end_at: nil, name: nil}
   }
 
   # This should return the minimal set of values that should be in the headers
@@ -43,16 +43,16 @@ RSpec.describe "/v1/agreements", type: :request do
       }
     end
     it "renders a successful response" do
-      company.agreements.create! valid_attributes
-      get "/v1/companies/#{company.id}/agreements", headers: valid_headers, as: :json
+      Agreement.create! valid_attributes
+      get "/v1/agreements", headers: valid_headers, as: :json
       expect(response).to be_successful
     end
   end
 
   describe "GET /show" do
     it "renders a successful response" do
-      agreement = company.agreements.create! valid_attributes
-      get "/v1/companies/#{company.id}/agreements", as: :json
+      agreement = Agreement.create! valid_attributes
+      get "/v1/agreements", as: :json
       expect(response).to be_successful
     end
   end
@@ -61,13 +61,13 @@ RSpec.describe "/v1/agreements", type: :request do
     context "with valid parameters" do
       it "creates a new Agreement" do
         expect {
-          post "/v1/companies/#{company.id}/agreements",
+          post "/v1/agreements",
                params: { agreement: valid_attributes }, headers: valid_headers, as: :json
         }.to change(Agreement, :count).by(1)
       end
 
       it "renders a JSON response with the new agreement" do
-        post "/v1/companies/#{company.id}/agreements",
+        post "/v1/agreements",
              params: { agreement: valid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:created)
         expect(response.content_type).to match(a_string_including("application/json"))
@@ -77,16 +77,16 @@ RSpec.describe "/v1/agreements", type: :request do
     context "with invalid parameters" do
       it "does not create a new Agreement" do
         expect {
-          post "/v1/companies/#{company.id}/agreements",
+          post "/v1/agreements",
                params: { agreement: invalid_attributes }, as: :json
         }.to change(Agreement, :count).by(0)
       end
 
       it "renders a JSON response with errors for the new agreement" do
-        post "/v1/companies/#{company.id}/agreements",
+        post "/v1/agreements",
              params: { agreement: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(response.content_type).to eq("application/json")
+        expect(response.content_type).to eq("application/json; charset=utf-8")
       end
     end
   end
@@ -98,16 +98,16 @@ RSpec.describe "/v1/agreements", type: :request do
       }
 
       it "updates the requested agreement" do
-        agreement = company.agreements.create! valid_attributes
-        patch "/v1/companies/#{company.id}/agreements/#{agreement.id}",
+        agreement = Agreement.create! valid_attributes
+        patch "/v1/agreements/#{agreement.id}",
               params: { agreement: new_attributes }, headers: valid_headers, as: :json
         agreement.reload
         skip("Add assertions for updated state")
       end
 
       it "renders a JSON response with the agreement" do
-        agreement = company.agreements.create! valid_attributes
-        patch "/v1/companies/#{company.id}/agreements/#{agreement.id}",
+        agreement = Agreement.create! valid_attributes
+        patch "/v1/agreements/#{agreement.id}",
               params: { agreement: new_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to match(a_string_including("application/json"))
@@ -116,20 +116,20 @@ RSpec.describe "/v1/agreements", type: :request do
 
     context "with invalid parameters" do
       it "renders a JSON response with errors for the agreement" do
-        agreement = company.agreements.create! valid_attributes
-        patch "/v1/companies/#{company.id}/agreements/#{agreement.id}",
+        agreement = Agreement.create! valid_attributes
+        patch "/v1/agreements/#{agreement.id}",
               params: { agreement: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(response.content_type).to eq("application/json")
+        expect(response.content_type).to eq("application/json; charset=utf-8")
       end
     end
   end
 
   describe "DELETE /destroy" do
     it "destroys the requested agreement" do
-      agreement = company.agreements.create! valid_attributes
+      agreement = Agreement.create! valid_attributes
       expect {
-        delete "/v1/companies/#{company.id}/agreements/#{agreement.id}", headers: valid_headers, as: :json
+        delete "/v1/agreements/#{agreement.id}", headers: valid_headers, as: :json
       }.to change(Agreement, :count).by(-1)
     end
   end

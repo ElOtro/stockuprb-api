@@ -1,20 +1,23 @@
 class V1::AgreementsController < V1::BaseController
-  before_action :set_company
-  before_action :set_agreement, only: [:show, :update, :destroy]
+  before_action :set_agreement, only: %i[show update destroy]
 
   # GET /companies/1/agreements
   def index
-    @agreements = @company.agreements
+    @sort = sort_column
+    @direction = sort_direction
+
+    @agreements = Agreement.order(sort_column + ' ' + sort_direction).page(params[:page]).per(params[:limit])
+
+    @meta = pagination_dict(@agreements)
   end
 
   # GET /companies/1/agreements/1
-  def show
-
-  end
+  def show; end
 
   # POST /companies/1/agreements
   def create
-    @agreement = @company.agreements.new(agreement_params)
+    @agreement = Agreement.new(agreement_params)
+    # @agreement.user = current_user
 
     if @agreement.save
       render :show, status: :created
@@ -38,17 +41,32 @@ class V1::AgreementsController < V1::BaseController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_company
-      @company = Company.find(params[:company_id])
-    end
 
-    def set_agreement
-      @agreement = Agreement.find(params[:id])
-    end
+  def pagination_dict(collection)
+    {
+      current_page: collection.current_page,
+      next_page: collection.next_page,
+      prev_page: collection.prev_page,
+      total_pages: collection.total_pages,
+      total_count: collection.total_count
+    }
+  end
 
-    # Only allow a list of trusted parameters through.
-    def agreement_params
-      params.require(:agreement).permit(:start_at, :end_at, :name, :user_id, :destroyed_at)
-    end
+  def sort_column
+    params[:sort] || 'start_at'
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : 'desc'
+  end
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_agreement
+    @agreement = Agreement.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def agreement_params
+    params.require(:agreement).permit(:company_id, :start_at, :end_at, :name, :user_id, :destroyed_at)
+  end
 end

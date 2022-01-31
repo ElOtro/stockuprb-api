@@ -14,13 +14,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseURL}}/companies/1/agreements",
+							"raw": "{{baseURL}}/agreements",
 							"host": [
 								"{{baseURL}}"
 							],
 							"path": [
-								"companies",
-								"1",
 								"agreements"
 							]
 						}
@@ -33,13 +31,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseURL}}/companies/1/agreements/1",
+							"raw": "{{baseURL}}/agreements/1",
 							"host": [
 								"{{baseURL}}"
 							],
 							"path": [
-								"companies",
-								"1",
 								"agreements",
 								"1"
 							]
@@ -54,7 +50,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"agreement\": {\n        \"start_at\": \"2022-01-08T13:45:47+03:00\",\n        \"end_at\": null,\n        \"name\": \"Основной договор\"\n    }\n}",
+							"raw": "{\n    \"agreement\": {\n        \"company_id\": 1,\n        \"start_at\": \"2022-01-08T13:45:47+03:00\",\n        \"end_at\": null,\n        \"name\": \"Основной договор\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -62,13 +58,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseURL}}/companies/1/agreements",
+							"raw": "{{baseURL}}/agreements",
 							"host": [
 								"{{baseURL}}"
 							],
 							"path": [
-								"companies",
-								"1",
 								"agreements"
 							]
 						}
@@ -82,7 +76,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"agreement\": {\n        \"start_at\": \"2022-01-08T13:45:47+03:00\",\n        \"end_at\": \"2022-01-10T13:45:47+03:00\",\n        \"name\": \"Основной договор\",\n        \"company_id\": 1\n    }\n}",
+							"raw": "{\n    \"agreement\": {\n        \"company_id\": 1,\n        \"start_at\": \"2022-01-08T13:45:47+03:00\",\n        \"end_at\": \"2022-01-10T13:45:47+03:00\",\n        \"name\": \"#132\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -90,13 +84,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseURL}}/companies/1/agreements/1",
+							"raw": "{{baseURL}}/agreements/1",
 							"host": [
 								"{{baseURL}}"
 							],
 							"path": [
-								"companies",
-								"1",
 								"agreements",
 								"1"
 							]
@@ -110,15 +102,13 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseURL}}/companies/1/agreements/1",
+							"raw": "{{baseURL}}/agreements/11",
 							"host": [
 								"{{baseURL}}"
 							],
 							"path": [
-								"companies",
-								"1",
 								"agreements",
-								"1"
+								"11"
 							]
 						}
 					},
@@ -1048,6 +1038,35 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Dmitry\",\n    \"email\": \"admin@example.com\",\n    \"password\": \"12345678\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/users",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -1391,7 +1410,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImV4cCI6MTY0MzYyMTEzNywiaXNzIjoic3RvY2t1cC1hcGkiLCJhdWQiOiJzdG9ja3VwLWFwaSJ9.h7QriSfybxeJKp7QoedvGjD01Q0qr9pUUGXh4GtknJA",
+				"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImV4cCI6MTY0Mzc0Mzc0NiwiaXNzIjoic3RvY2t1cC1hcGkiLCJhdWQiOiJzdG9ja3VwLWFwaSJ9.30ZKn4kaLr4BcCRXHABJlTd5X3vu9cD57sswtCvow_0",
 				"type": "string"
 			}
 		]

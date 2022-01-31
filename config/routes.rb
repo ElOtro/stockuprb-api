@@ -18,9 +18,10 @@ Rails.application.routes.draw do
     resources :companies do
       get :search, on: :collection
       resources :contacts
-      resources :agreements do
-        get :search, on: :collection
-      end
+    end
+
+    resources :agreements do
+      get :search, on: :collection
     end
 
     resources :projects do
