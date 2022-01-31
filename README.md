@@ -16,3 +16,7 @@ Database schema: <a href="https://github.com/ElOtro/stockuprb-api/blob/master/er
 ## How to run
 
 rake db:create db:migrate an then rails s
+
+## TODO
+
+- Dockerize 
