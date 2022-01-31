@@ -1,23 +1,18 @@
-# README
+## App
 
-Documentation is in progress...
+This is an application that is used to create and store your invoices even if you have many organisations and bank accounts.
 
-<!-- Things you may want to cover:
+Database schema: <a href="https://github.com/ElOtro/stockuprb-api/blob/master/erd.pdf">erd.pdf</a>
 
-* Ruby version
+## Dependencies
 
-* System dependencies
+- Rspec
+- Devise
+- Faker
+- PostgreSQL
+- Kaminari
+- JWT
 
-* Configuration
+## How to run
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions -->
-
-* ...
+rake db:create db:migrate an then rails s
