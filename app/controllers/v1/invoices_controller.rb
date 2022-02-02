@@ -4,11 +4,9 @@ class V1::InvoicesController < V1::BaseController
 
   # GET /invoices
   def index
-    @sort = sort_column
-    @direction = sort_direction
-
     @invoices = Invoice.includes(:organisation, :bank_account, :company, :agreement, :project, :user)
-    @invoices = @invoices.reorder(sort_column + ' ' + sort_direction).page(params[:page]).per(params[:limit])
+    @invoices = AllInvoicesQuery.new(@invoices).call(filter_params)
+    @invoices = @invoices.page(params[:page]).per(params[:limit])
 
     @meta = pagination_dict(@invoices)
   end
@@ -18,7 +16,11 @@ class V1::InvoicesController < V1::BaseController
 
   # POST /invoices
   def create
-    params[:invoice][:invoice_items_attributes] = params[:invoice].delete(:invoice_items) if params[:invoice].has_key?("invoice_items")
+    # DO NOT DO THIS! 
+    if params[:invoice].has_key?('invoice_items')
+      params[:invoice][:invoice_items_attributes] =
+        params[:invoice].delete(:invoice_items)
+    end
     @invoice = Invoice.new(invoice_params)
     @invoice.user = current_user
 
@@ -55,20 +57,16 @@ class V1::InvoicesController < V1::BaseController
     }
   end
 
-  def sort_column
-    params[:sort] || 'created_at'
-  end
-
-  def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : 'desc'
-  end
-
   # Use callbacks to share common setup or constraints between actions.
   def set_invoice
     @invoice = Invoice.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
+  def filter_params
+    params.permit(:format, :user_id, :organisation_id, :search, :sort, :direction, :page, :limit)
+  end
+
   def invoice_params
     params.require(:invoice).permit(:is_active, :date, :number, :organisation_id, :bank_account_id, :company_id,
                                     :agreement_id, :project_id, :amount, :discount, :vat, :user_id,
