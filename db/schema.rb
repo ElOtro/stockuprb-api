@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(version: 2022_01_25_161217) do
 
   create_table "agreements", comment: "Agreements", force: :cascade do |t|
     t.bigint "company_id", null: false
-    t.date "start_at", comment: "Date of start"
-    t.date "end_at", comment: "Date of end"
+    t.date "start_at", comment: "The first day that an Agreement is valid"
+    t.date "end_at", comment: "The last day that an Agreement is valid"
     t.string "name", comment: "Name of Agreement"
     t.bigint "user_id", comment: "Creator"
     t.datetime "destroyed_at", comment: "Uses for soft delete"
@@ -79,17 +79,17 @@ ActiveRecord::Schema.define(version: 2022_01_25_161217) do
 
   create_table "invoice_items", force: :cascade do |t|
     t.bigint "invoice_id", null: false
-    t.integer "position", default: 0
-    t.bigint "product_id", null: false
-    t.text "description"
-    t.bigint "unit_id", null: false
-    t.decimal "quantity", precision: 8, scale: 3, default: "0.0"
-    t.decimal "price", precision: 15, scale: 2, default: "0.0"
-    t.decimal "amount", precision: 15, scale: 2, default: "0.0"
-    t.decimal "discount_rate", precision: 15, scale: 2, default: "0.0"
-    t.decimal "discount", precision: 15, scale: 2, default: "0.0"
-    t.bigint "vat_rate_id", null: false
-    t.decimal "vat", precision: 15, scale: 2, default: "0.0"
+    t.integer "position", default: 0, comment: "Order for a list"
+    t.bigint "product_id", null: false, comment: "Product"
+    t.text "description", comment: "Custom description, default from Product"
+    t.bigint "unit_id", null: false, comment: "Unit"
+    t.decimal "quantity", precision: 8, scale: 3, default: "0.0", comment: "Quantity"
+    t.decimal "price", precision: 15, scale: 2, default: "0.0", comment: "Price"
+    t.decimal "amount", precision: 15, scale: 2, default: "0.0", comment: "Amount, Quantity * Price"
+    t.decimal "discount_rate", precision: 15, scale: 2, default: "0.0", comment: "Discount, percent"
+    t.decimal "discount", precision: 15, scale: 2, default: "0.0", comment: "Discount, amount"
+    t.bigint "vat_rate_id", null: false, comment: "VAT rate"
+    t.decimal "vat", precision: 15, scale: 2, default: "0.0", comment: "Amount of VAT"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["invoice_id"], name: "index_invoice_items_on_invoice_id"
@@ -145,15 +145,15 @@ ActiveRecord::Schema.define(version: 2022_01_25_161217) do
     t.index ["destroyed_at"], name: "index_organisations_on_destroyed_at"
   end
 
-  create_table "products", force: :cascade do |t|
-    t.boolean "is_active", default: false
-    t.integer "product_type"
-    t.string "name"
-    t.text "description"
-    t.string "sku"
-    t.decimal "price"
-    t.bigint "vat_rate_id", null: false
-    t.bigint "unit_id", null: false
+  create_table "products", comment: "Products", force: :cascade do |t|
+    t.boolean "is_active", default: false, comment: "Visible or not"
+    t.integer "product_type", comment: "Product Type (category)"
+    t.string "name", comment: "Name"
+    t.text "description", comment: "Description, default value"
+    t.string "sku", comment: "SKU of Product"
+    t.decimal "price", comment: "Price of Product"
+    t.bigint "vat_rate_id", null: false, comment: "VAT, default value"
+    t.bigint "unit_id", null: false, comment: "Unit, default value"
     t.bigint "user_id", comment: "Creator"
     t.tsvector "search_vector"
     t.datetime "destroyed_at", comment: "Uses for soft delete"
@@ -205,11 +205,11 @@ ActiveRecord::Schema.define(version: 2022_01_25_161217) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "vat_rates", force: :cascade do |t|
-    t.boolean "is_active", default: false
-    t.boolean "is_default", default: false
-    t.decimal "rate", precision: 15, scale: 2, default: "0.0"
-    t.string "name"
+  create_table "vat_rates", comment: "Vat Rates", force: :cascade do |t|
+    t.boolean "is_active", default: false, comment: "Visible or not"
+    t.boolean "is_default", default: false, comment: "Default or not"
+    t.decimal "rate", precision: 15, scale: 2, default: "0.0", comment: "Rate of VAT"
+    t.string "name", comment: "Presentation of VAT"
     t.datetime "destroyed_at", comment: "Uses for soft delete"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
