@@ -11,6 +11,9 @@ class Invoice < ApplicationRecord
 
   before_save :set_total
 
+  delegate :name, to: :organisation, allow_nil: true, prefix: true
+  delegate :name, to: :company, allow_nil: true, prefix: true  
+
   def total_vat
     invoice_items.sum(&:vat)
   end

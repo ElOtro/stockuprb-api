@@ -9,9 +9,9 @@ class CreateProducts < ActiveRecord::Migration[6.1]
       t.decimal    :price
       t.references :vat_rate, null: false,  index: true
       t.references :unit, null: false,  index: true
-      t.references :user,  index: true
+      t.references :user,  index: true, comment: "Creator"
       t.tsvector   :search_vector, index: true, using: :gin
-      t.datetime   :destroyed_at, index: true
+      t.datetime   :destroyed_at, index: true, comment: "Uses for soft delete"
 
       t.timestamps
     end

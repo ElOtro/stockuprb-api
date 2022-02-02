@@ -16,13 +16,13 @@ ActiveRecord::Schema.define(version: 2022_01_25_161217) do
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
 
-  create_table "agreements", force: :cascade do |t|
+  create_table "agreements", comment: "Agreements", force: :cascade do |t|
     t.bigint "company_id", null: false
-    t.date "start_at"
-    t.date "end_at"
-    t.string "name"
-    t.bigint "user_id"
-    t.datetime "destroyed_at"
+    t.date "start_at", comment: "Date of start"
+    t.date "end_at", comment: "Date of end"
+    t.string "name", comment: "Name of Agreement"
+    t.bigint "user_id", comment: "Creator"
+    t.datetime "destroyed_at", comment: "Uses for soft delete"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["company_id"], name: "index_agreements_on_company_id"
@@ -30,27 +30,27 @@ ActiveRecord::Schema.define(version: 2022_01_25_161217) do
     t.index ["user_id"], name: "index_agreements_on_user_id"
   end
 
-  create_table "bank_accounts", force: :cascade do |t|
-    t.bigint "organisation_id", null: false
-    t.boolean "is_default", default: false
-    t.integer "account_type", default: 1
-    t.string "name"
-    t.jsonb "details", default: {}
-    t.datetime "destroyed_at"
+  create_table "bank_accounts", comment: "Bank Accounts of Organisations", force: :cascade do |t|
+    t.bigint "organisation_id", null: false, comment: "Organisation"
+    t.boolean "is_default", default: false, comment: "Is default Bank Account of Organisation"
+    t.integer "account_type", default: 1, comment: "Type of Bank Account"
+    t.string "name", comment: "Name of Bank Account"
+    t.jsonb "details", default: {}, comment: "To store additional information"
+    t.datetime "destroyed_at", comment: "Uses for soft delete"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["destroyed_at"], name: "index_bank_accounts_on_destroyed_at"
     t.index ["organisation_id"], name: "index_bank_accounts_on_organisation_id"
   end
 
-  create_table "companies", force: :cascade do |t|
+  create_table "companies", comment: "Companies", force: :cascade do |t|
     t.string "logo"
-    t.string "name"
-    t.string "full_name"
-    t.integer "company_type", default: 1
-    t.jsonb "details", default: {}
-    t.bigint "user_id"
-    t.datetime "destroyed_at"
+    t.string "name", comment: "Short name of Company"
+    t.string "full_name", comment: "Full name name of Company"
+    t.integer "company_type", default: 1, comment: "Type of Company"
+    t.jsonb "details", default: {}, comment: "To store additional information"
+    t.bigint "user_id", comment: "Creator"
+    t.datetime "destroyed_at", comment: "Uses for soft delete"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["destroyed_at"], name: "index_companies_on_destroyed_at"
@@ -59,16 +59,16 @@ ActiveRecord::Schema.define(version: 2022_01_25_161217) do
 
   create_table "contacts", force: :cascade do |t|
     t.bigint "company_id", null: false
-    t.integer "role", default: 1
-    t.string "title"
-    t.string "name"
-    t.string "phone"
-    t.string "email"
+    t.integer "role", default: 1, comment: "Role"
+    t.string "title", comment: "Title"
+    t.string "name", comment: "Name"
+    t.string "phone", comment: "Phone"
+    t.string "email", comment: "Email"
     t.datetime "start_at"
-    t.string "sign"
-    t.jsonb "details", default: {}
-    t.bigint "user_id"
-    t.datetime "destroyed_at"
+    t.string "sign", comment: "Image object, uses for printable documents"
+    t.jsonb "details", default: {}, comment: "To store additional information"
+    t.bigint "user_id", comment: "Creator"
+    t.datetime "destroyed_at", comment: "Uses for soft delete"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["company_id"], name: "index_contacts_on_company_id"
@@ -98,21 +98,21 @@ ActiveRecord::Schema.define(version: 2022_01_25_161217) do
     t.index ["vat_rate_id"], name: "index_invoice_items_on_vat_rate_id"
   end
 
-  create_table "invoices", force: :cascade do |t|
-    t.boolean "is_active", default: false
-    t.datetime "date"
-    t.string "number"
-    t.bigint "organisation_id", null: false
-    t.bigint "bank_account_id", null: false
-    t.bigint "company_id", null: false
-    t.bigint "agreement_id", null: false
-    t.bigint "project_id"
-    t.decimal "amount", precision: 15, scale: 2, default: "0.0"
-    t.decimal "discount", precision: 15, scale: 2, default: "0.0"
-    t.decimal "vat", precision: 15, scale: 2, default: "0.0"
-    t.bigint "user_id"
-    t.tsvector "search_vector"
-    t.datetime "destroyed_at"
+  create_table "invoices", comment: "Invoices", force: :cascade do |t|
+    t.boolean "is_active", default: false, comment: "Draft or not"
+    t.datetime "date", comment: "Date and time"
+    t.string "number", comment: "Number"
+    t.bigint "organisation_id", null: false, comment: "Organisation"
+    t.bigint "bank_account_id", null: false, comment: "Bank Account of Organisation"
+    t.bigint "company_id", null: false, comment: "Company"
+    t.bigint "agreement_id", null: false, comment: "Agreement of Company"
+    t.bigint "project_id", comment: "Project"
+    t.decimal "amount", precision: 15, scale: 2, default: "0.0", comment: "Total amount"
+    t.decimal "discount", precision: 15, scale: 2, default: "0.0", comment: "Total discount"
+    t.decimal "vat", precision: 15, scale: 2, default: "0.0", comment: "Total vat"
+    t.bigint "user_id", comment: "Creator"
+    t.tsvector "search_vector", comment: "Uses for search"
+    t.datetime "destroyed_at", comment: "Uses for soft delete"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["agreement_id"], name: "index_invoices_on_agreement_id"
@@ -127,19 +127,19 @@ ActiveRecord::Schema.define(version: 2022_01_25_161217) do
     t.index ["user_id"], name: "index_invoices_on_user_id"
   end
 
-  create_table "organisations", force: :cascade do |t|
-    t.string "name"
-    t.string "full_name"
-    t.string "ceo"
-    t.string "ceo_title"
-    t.string "cfo"
-    t.string "cfo_title"
-    t.string "stamp"
-    t.string "ceo_sign"
-    t.string "cfo_sign"
-    t.boolean "is_vat_payer", default: false
-    t.jsonb "details", default: {}
-    t.datetime "destroyed_at"
+  create_table "organisations", comment: "Organisations", force: :cascade do |t|
+    t.string "name", comment: "Short name of organisation"
+    t.string "full_name", comment: "Full name of organisation"
+    t.string "ceo", comment: "CEO of organisation"
+    t.string "ceo_title", comment: "CEO's title"
+    t.string "cfo", comment: "CFO"
+    t.string "cfo_title", comment: "CFO's title"
+    t.string "stamp", comment: "Image object, uses for printable documents"
+    t.string "ceo_sign", comment: "Image object, uses for printable documents"
+    t.string "cfo_sign", comment: "Image object, uses for printable documents"
+    t.boolean "is_vat_payer", default: false, comment: "Use VAT"
+    t.jsonb "details", default: {}, comment: "To store additional information"
+    t.datetime "destroyed_at", comment: "Uses for soft delete"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["destroyed_at"], name: "index_organisations_on_destroyed_at"
@@ -154,9 +154,9 @@ ActiveRecord::Schema.define(version: 2022_01_25_161217) do
     t.decimal "price"
     t.bigint "vat_rate_id", null: false
     t.bigint "unit_id", null: false
-    t.bigint "user_id"
+    t.bigint "user_id", comment: "Creator"
     t.tsvector "search_vector"
-    t.datetime "destroyed_at"
+    t.datetime "destroyed_at", comment: "Uses for soft delete"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["destroyed_at"], name: "index_products_on_destroyed_at"
@@ -169,34 +169,34 @@ ActiveRecord::Schema.define(version: 2022_01_25_161217) do
   create_table "projects", force: :cascade do |t|
     t.string "name"
     t.tsvector "search_vector"
-    t.datetime "destroyed_at"
+    t.datetime "destroyed_at", comment: "Uses for soft delete"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["destroyed_at"], name: "index_projects_on_destroyed_at"
     t.index ["search_vector"], name: "index_projects_on_search_vector"
   end
 
-  create_table "units", force: :cascade do |t|
-    t.string "name"
-    t.datetime "destroyed_at"
+  create_table "units", comment: "International System of Units", force: :cascade do |t|
+    t.string "name", comment: "Symbol of Units (kg, m, etc)"
+    t.datetime "destroyed_at", comment: "Uses for soft delete"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["destroyed_at"], name: "index_units_on_destroyed_at"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.boolean "is_active"
-    t.string "name"
-    t.integer "role", default: 1
-    t.string "title"
-    t.string "avatar"
-    t.string "phone"
+  create_table "users", comment: "Users", force: :cascade do |t|
+    t.boolean "is_active", comment: "User is activated or not"
+    t.string "name", comment: "User Name"
+    t.integer "role", default: 1, comment: "User's Name"
+    t.string "title", default: "1", comment: "User's Title"
+    t.string "avatar", comment: "Image object, Avatar"
+    t.string "phone", comment: "User's Phone"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.datetime "destroyed_at"
+    t.datetime "destroyed_at", comment: "Uses for soft delete"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["destroyed_at"], name: "index_users_on_destroyed_at"
@@ -210,7 +210,7 @@ ActiveRecord::Schema.define(version: 2022_01_25_161217) do
     t.boolean "is_default", default: false
     t.decimal "rate", precision: 15, scale: 2, default: "0.0"
     t.string "name"
-    t.datetime "destroyed_at"
+    t.datetime "destroyed_at", comment: "Uses for soft delete"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["destroyed_at"], name: "index_vat_rates_on_destroyed_at"

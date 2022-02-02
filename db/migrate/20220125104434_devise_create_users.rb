@@ -2,13 +2,13 @@
 
 class DeviseCreateUsers < ActiveRecord::Migration[6.1]
   def change
-    create_table :users do |t|
-      t.boolean :is_active, index: true
-      t.string :name
-      t.integer :role, default: 1
-      t.string :title
-      t.string :avatar
-      t.string :phone
+    create_table :users, comment: "Users" do |t|
+      t.boolean :is_active, index: true, comment: "User is activated or not"
+      t.string :name, comment: "User Name"
+      t.integer :role, default: 1, comment: "User's Name"
+      t.string :title, default: 1, comment: "User's Title"
+      t.string :avatar, comment: "Image object, Avatar"
+      t.string :phone, comment: "User's Phone"
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
@@ -38,7 +38,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
 
-      t.datetime   :destroyed_at, index: true
+      t.datetime   :destroyed_at, index: true, comment: "Uses for soft delete"
       t.timestamps null: false
     end
 

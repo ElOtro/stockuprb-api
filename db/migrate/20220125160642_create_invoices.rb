@@ -1,20 +1,20 @@
 class CreateInvoices < ActiveRecord::Migration[6.1]
   def up
-    create_table :invoices do |t|
-      t.boolean    :is_active, default: false
-      t.datetime   :date, index: true
-      t.string     :number, index: true
-      t.references :organisation, null: false, index: true
-      t.references :bank_account, null: false, index: true
-      t.references :company, null: false, index: true
-      t.references :agreement, null: false, index: true
-      t.references :project, index: true
-      t.decimal    :amount, precision: 15, scale: 2, default: 0.0
-      t.decimal    :discount, precision: 15, scale: 2, default: 0.0
-      t.decimal    :vat, precision: 15, scale: 2, default: 0.0
-      t.references :user, index: true
-      t.tsvector   :search_vector, index: true, using: :gin
-      t.datetime   :destroyed_at, index: true
+    create_table :invoices, comment: "Invoices" do |t|
+      t.boolean    :is_active, default: false, comment: "Draft or not"
+      t.datetime   :date, index: true, comment: "Date and time"
+      t.string     :number, index: true, comment: "Number"
+      t.references :organisation, null: false, index: true, comment: "Organisation"
+      t.references :bank_account, null: false, index: true, comment: "Bank Account of Organisation"
+      t.references :company, null: false, index: true, comment: "Company"
+      t.references :agreement, null: false, index: true, comment: "Agreement of Company"
+      t.references :project, index: true, comment: "Project"
+      t.decimal    :amount, precision: 15, scale: 2, default: 0.0, comment: "Total amount"
+      t.decimal    :discount, precision: 15, scale: 2, default: 0.0, comment: "Total discount"
+      t.decimal    :vat, precision: 15, scale: 2, default: 0.0, comment: "Total vat"
+      t.references :user, index: true, comment: "Creator"
+      t.tsvector   :search_vector, index: true, using: :gin, comment: "Uses for search"
+      t.datetime   :destroyed_at, index: true, comment: "Uses for soft delete"
 
       t.timestamps
     end

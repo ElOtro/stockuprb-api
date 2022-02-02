@@ -5,7 +5,7 @@ class CreateVatRates < ActiveRecord::Migration[6.1]
       t.boolean  :is_default, default: false
       t.decimal  :rate, precision: 15, scale: 2, default: 0.0
       t.string   :name
-      t.datetime :destroyed_at, index: true
+      t.datetime :destroyed_at, index: true, comment: "Uses for soft delete"
 
       t.timestamps
     end

@@ -3,7 +3,7 @@ class CreateProjects < ActiveRecord::Migration[6.1]
     create_table :projects do |t|
       t.string     :name
       t.tsvector   :search_vector, index: true, using: :gin
-      t.datetime   :destroyed_at, index: true
+      t.datetime   :destroyed_at, index: true, comment: "Uses for soft delete"
 
       t.timestamps
     end

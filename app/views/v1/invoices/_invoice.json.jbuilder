@@ -3,7 +3,7 @@ json.extract! invoice, :id, :is_active, :date, :number, :project_id, :amount, :d
 json.organisation do
   if invoice.organisation
     json.id    invoice.organisation_id
-    json.name  invoice.organisation.try(:name)
+    json.name  invoice.organisation_name
   else
     json.null!
   end
@@ -21,7 +21,7 @@ end
 json.company do
   if invoice.company
     json.id    invoice.company_id
-    json.name  invoice.company.try(:name)
+    json.name  invoice.company_name
   else
     json.null!
   end
