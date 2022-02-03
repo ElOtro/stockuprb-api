@@ -37,9 +37,6 @@ RSpec.describe "/v1/projects", type: :request do
   describe "GET /index" do
     before do
       login_with_api(user)
-      get "/v1/users/#{user.id}", headers: {
-        'Authorization': response.headers['Authorization']
-      }
     end
     it "renders a successful response" do
       Project.create! valid_attributes
@@ -101,7 +98,7 @@ RSpec.describe "/v1/projects", type: :request do
         patch v1_project_url(project),
               params: { project: new_attributes }, headers: valid_headers, as: :json
         project.reload
-        skip("Add assertions for updated state")
+        expect(json['data']['name']).to eq('Project #2')
       end
 
       it "renders a JSON response with the project" do

@@ -36,9 +36,6 @@ RSpec.describe "/v1/vat_rates", type: :request do
   describe "GET /index" do
     before do
       login_with_api(user)
-      get "/v1/users/#{user.id}", headers: {
-        'Authorization': response.headers['Authorization']
-      }
     end
     it "renders a successful response" do
       VatRate.create! valid_attributes
@@ -100,7 +97,7 @@ RSpec.describe "/v1/vat_rates", type: :request do
         patch v1_vat_rate_url(vat_rate),
               params: { vat_rate: new_attributes }, headers: valid_headers, as: :json
         vat_rate.reload
-        skip("Add assertions for updated state")
+        expect(json['data']['name']).to eq('10%')
       end
 
       it "renders a JSON response with the vat_rate" do

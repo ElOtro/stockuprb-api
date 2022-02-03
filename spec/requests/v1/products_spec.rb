@@ -40,9 +40,6 @@ RSpec.describe "/v1/products", type: :request do
   describe "GET /index" do
     before do
       login_with_api(user)
-      get "/v1/users/#{user.id}", headers: {
-        'Authorization': response.headers['Authorization']
-      }
     end
 
     it "renders a successful response" do
@@ -97,7 +94,7 @@ RSpec.describe "/v1/products", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        attributes_for(:product, name: "Product Test")
       }
 
       it "updates the requested product" do
@@ -105,7 +102,7 @@ RSpec.describe "/v1/products", type: :request do
         patch v1_product_url(product),
               params: { product: new_attributes }, headers: valid_headers, as: :json
         product.reload
-        skip("Add assertions for updated state")
+        expect(json['data']['name']).to eq('Product Test')
       end
 
       it "renders a JSON response with the product" do

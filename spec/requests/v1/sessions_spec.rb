@@ -8,9 +8,6 @@ RSpec.describe '/v1/auth', type: :request do
   context 'logging in' do
     before do
       login_with_api(user)
-      get "/v1/users/#{user.id}", headers: {
-        'Authorization': response.headers['Authorization']
-      }
     end
 
     it 'returns 200' do

@@ -1,7 +1,7 @@
 class V1::AgreementsController < V1::BaseController
   before_action :set_agreement, only: %i[show update destroy]
 
-  # GET /companies/1/agreements
+  # GET /agreements
   def index
     @sort = sort_column
     @direction = sort_direction
@@ -11,13 +11,13 @@ class V1::AgreementsController < V1::BaseController
     @meta = pagination_dict(@agreements)
   end
 
-  # GET /companies/1/agreements/1
+  # GET /agreements/1
   def show; end
 
-  # POST /companies/1/agreements
+  # POST /agreements
   def create
     @agreement = Agreement.new(agreement_params)
-    # @agreement.user = current_user
+    # @agreement.user = current_user if current_user
 
     if @agreement.save
       render :show, status: :created
@@ -26,7 +26,7 @@ class V1::AgreementsController < V1::BaseController
     end
   end
 
-  # PATCH/PUT /companies/1/agreements/1
+  # PATCH/PUT /agreements/1
   def update
     if @agreement.update(agreement_params)
       render :show
@@ -35,7 +35,7 @@ class V1::AgreementsController < V1::BaseController
     end
   end
 
-  # DELETE /companies/1/agreements/1
+  # DELETE /agreements/1
   def destroy
     @agreement.destroy
   end

@@ -38,9 +38,6 @@ RSpec.describe "/v1/companies", type: :request do
     before do
       puts "user.id: #{user.id}"
       login_with_api(user)
-      get "/v1/users/#{user.id}", headers: {
-        'Authorization': response.headers['Authorization']
-      }
     end
     it "renders a successful response" do
       Company.create! valid_attributes

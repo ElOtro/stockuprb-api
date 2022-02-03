@@ -14,15 +14,16 @@ require 'rails_helper'
 
 RSpec.describe "/v1/invoices", type: :request do
   let (:user) { create_user }
+  let (:invoice) { build :invoice }
   # This should return the minimal set of attributes required to create a valid
   # Invoice. As you add validations to Invoice, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    attributes_for(:invoice)
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    attributes_for(:invoice, organisation_id: nil)
   }
 
   # This should return the minimal set of values that should be in the headers
@@ -36,9 +37,6 @@ RSpec.describe "/v1/invoices", type: :request do
   describe "GET /index" do
     before do
       login_with_api(user)
-      get "/v1/users/#{user.id}", headers: {
-        'Authorization': response.headers['Authorization']
-      }
     end
     it "renders a successful response" do
       Invoice.create! valid_attributes
@@ -84,7 +82,7 @@ RSpec.describe "/v1/invoices", type: :request do
         post v1_invoices_url,
              params: { invoice: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(response.content_type).to eq("application/json")
+        expect(response.content_type).to eq("application/json; charset=utf-8")
       end
     end
   end
@@ -118,7 +116,7 @@ RSpec.describe "/v1/invoices", type: :request do
         patch v1_invoice_url(invoice),
               params: { invoice: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(response.content_type).to eq("application/json")
+        expect(response.content_type).to eq("application/json; charset=utf-8")
       end
     end
   end

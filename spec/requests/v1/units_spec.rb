@@ -37,9 +37,6 @@ RSpec.describe "/v1/units", type: :request do
   describe "GET /index" do
     before do
       login_with_api(user)
-      get "/v1/users/#{user.id}", headers: {
-        'Authorization': response.headers['Authorization']
-      }
     end
     it "renders a successful response" do
       Unit.create! valid_attributes
@@ -101,7 +98,7 @@ RSpec.describe "/v1/units", type: :request do
         patch v1_unit_url(unit),
               params: { unit: new_attributes }, headers: valid_headers, as: :json
         unit.reload
-        skip("Add assertions for updated state")
+        expect(json['data']['name']).to eq('m2')
       end
 
       it "renders a JSON response with the unit" do

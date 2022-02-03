@@ -72,9 +72,6 @@ RSpec.describe '/v1/invoice_items', type: :request do
   describe 'GET /index' do
     before do
       login_with_api(user)
-      get "/v1/users/#{user.id}", headers: {
-        'Authorization': response.headers['Authorization']
-      }
     end
     it 'renders a successful response' do
       invoice.invoice_items.create! valid_attributes

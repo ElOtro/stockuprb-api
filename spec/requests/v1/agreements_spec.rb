@@ -38,9 +38,7 @@ RSpec.describe "/v1/agreements", type: :request do
   describe "GET /index" do
     before do
       login_with_api(user)
-      get "/v1/users/#{user.id}", headers: {
-        'Authorization': response.headers['Authorization']
-      }
+      # puts "#{response.headers['Authorization']}"
     end
     it "renders a successful response" do
       Agreement.create! valid_attributes

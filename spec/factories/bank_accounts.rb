@@ -2,7 +2,7 @@ require 'faker'
 
 FactoryBot.define do
   factory :bank_account do
-    organisation
+    organisation { create :organisation }
     name { Faker::Bank.name}
     details  { { bik: Faker::Bank.swift_bic, 
                  account: Faker::Bank.account_number(digits: 13),

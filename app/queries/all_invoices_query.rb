@@ -19,8 +19,8 @@ class AllInvoicesQuery
     user_id ? scope.where(user_id: user_id) : scope
   end
 
-  def by_organisation_id(scope, organisation_id = nil)
-    organisation_id ? scope.where(organisation_id: organisation_id) : scope
+  def by_organisation_id(scope, user_id = nil)
+    user_id ? scope.where(user_id: user_id) : scope
   end
 
   def search(scope, query = nil)
