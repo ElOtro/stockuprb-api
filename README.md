@@ -19,7 +19,9 @@ If you are comfortable with Postman, download collection <a href="StockUp.postma
 
 ## How to run
 
-rake db:create db:migrate and then rails s
+docker compose build
+docker compose run --rm web bin/rails db:setup
+docker compose up
 
 If you want to fill database tables with test data, run: 
 rake db:seed
