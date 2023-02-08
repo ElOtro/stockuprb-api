@@ -6,6 +6,5 @@ FactoryBot.define do
     company { create :company }
     start_at { DateTime.now - 6.months }
     end_at { DateTime.now }
-    name { Faker::Invoice.creditor_reference }
   end
 end

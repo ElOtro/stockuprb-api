@@ -8,7 +8,7 @@ class InvoiceItem < ApplicationRecord
   before_save :set_vat, :set_position
 
   def set_vat
-    self.vat = (amount * (vat_rate.rate / 100).round(2)).round(2)
+    self.vat = Tax::Vat::Amount.call(amount, vat_rate.rate)
   end
 
   def set_position

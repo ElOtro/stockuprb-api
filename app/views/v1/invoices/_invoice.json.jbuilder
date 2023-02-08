@@ -1,4 +1,4 @@
-json.extract! invoice, :id, :is_active, :date, :number, :project_id, :amount, :discount, :vat, :created_at, :updated_at
+json.extract! invoice, :id, :is_active, :date, :number, :amount, :discount, :vat, :created_at, :updated_at
 
 json.organisation do
   if invoice.organisation

@@ -17,12 +17,12 @@ class V1::InvoicesController < V1::BaseController
   # POST /invoices
   def create
     # DO NOT DO THIS! 
-    if params[:invoice].has_key?('invoice_items')
-      params[:invoice][:invoice_items_attributes] =
-        params[:invoice].delete(:invoice_items)
-    end
+    # if params[:invoice].has_key?('invoice_items')
+    #   params[:invoice][:invoice_items_attributes] =
+    #     params[:invoice].delete(:invoice_items)
+    # end
     @invoice = Invoice.new(invoice_params)
-    # @invoice.user = current_user
+    @invoice.user = current_user
 
     if @invoice.save
       render :show, status: :created
