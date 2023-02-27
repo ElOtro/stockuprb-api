@@ -1,4 +1,5 @@
 class V1::AgreementsController < V1::BaseController
+  before_action :authenticate_user!
   before_action :set_agreement, only: %i[show update destroy]
 
   # GET /agreements

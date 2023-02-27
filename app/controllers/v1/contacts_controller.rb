@@ -1,4 +1,5 @@
 class V1::ContactsController < V1::BaseController
+  before_action :authenticate_user!
   before_action :set_company
   before_action :set_contact, only: [:show, :update, :destroy]
 

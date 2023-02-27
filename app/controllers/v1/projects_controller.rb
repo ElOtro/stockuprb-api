@@ -1,4 +1,5 @@
 class V1::ProjectsController < V1::BaseController
+  before_action :authenticate_user!
   before_action :set_project, only: %i[show update destroy]
 
   # GET /projects

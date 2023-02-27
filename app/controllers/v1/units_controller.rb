@@ -1,4 +1,5 @@
 class V1::UnitsController < V1::BaseController
+  before_action :authenticate_user!
   before_action :set_unit, only: %i[show update destroy]
 
   # GET /units

@@ -1,5 +1,5 @@
 class V1::InvoicesController < V1::BaseController
-  # before_action :authenticate_user!
+  before_action :authenticate_user!
   before_action :set_invoice, only: %i[show update destroy]
 
   # GET /invoices

@@ -1,8 +1,8 @@
 ---
     get:
-      description: List of Invoices
+      description: List of Products
       tags:
-      - Invoices
+      - Products
       parameters:
       - name: page
         in: query
@@ -19,7 +19,7 @@
         in: query
         schema:
           type: string
-          default: created_at
+          default: name
         required: false
         description: Attribute for sort
       - name: direction
@@ -32,30 +32,12 @@
             - desc
         required: false
         description: Sort direction
-      - name: user_id
-        in: query
-        schema:
-          type: number
-        required: false
-        description: User ID
-      - name: organisation_id
-        in: query
-        schema:
-          type: number
-        required: false
-        description: Organisation ID
-      - name: company_id
-        in: query
-        schema:
-          type: number
-        required: false
-        description: Company ID
       - name: search
         in: query
         schema:
           type: string
         required: false
-        description: Search by company name, agreement name, number
+        description: Search by name, sku, description
       responses:
         '200':
           description: List of Invoices

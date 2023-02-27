@@ -6,6 +6,8 @@ info:
 paths:
   "/invoices.json":
     $ref: 'invoices.yaml'
+  "/products.json":
+    $ref: 'products.yaml'
 servers:
   - url: "{protocol}://{server}"
     variables:

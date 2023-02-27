@@ -1,4 +1,5 @@
 class V1::VatRatesController < V1::BaseController
+  before_action :authenticate_user!
   before_action :set_vat_rate, only: [:show, :update, :destroy]
 
   # GET /vat_rates

@@ -3,11 +3,8 @@ class V1::ProductsController < V1::BaseController
 
   # GET /products
   def index
-    @sort = sort_column
-    @direction = sort_direction
-
     @products = Product.includes(:vat_rate, :unit)
-    @products = @products.reorder(sort_column + ' ' + sort_direction).page(params[:page]).per(params[:limit])
+    @products = ::Queries::Products.new(@products).call(filter_params)
 
     @meta = pagination_dict(@products)
   end
@@ -61,20 +58,16 @@ class V1::ProductsController < V1::BaseController
     }
   end
 
-  def sort_column
-    params[:sort] || 'name'
-  end
-
-  def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : 'desc'
-  end
-
   # Use callbacks to share common setup or constraints between actions.
   def set_product
     @product = Product.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
+  def filter_params
+    params.permit(:format, :search, :sort, :direction, :page, :limit)
+  end
+
   def product_params
     params.require(:product).permit(:is_active, :product_type, :name, :description, :sku, :price,:vat_rate_id, 
                                     :unit_id, :user_id, :search_vector, :destroyed_at)

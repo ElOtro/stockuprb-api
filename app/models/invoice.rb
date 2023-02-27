@@ -1,4 +1,5 @@
 class Invoice < ApplicationRecord
+  include PgSearch::Model
   belongs_to :organisation
   belongs_to :bank_account
   belongs_to :company
@@ -13,6 +14,15 @@ class Invoice < ApplicationRecord
 
   delegate :name, to: :organisation, allow_nil: true, prefix: true
   delegate :name, to: :company, allow_nil: true, prefix: true
+
+  pg_search_scope :search, against: [:search_vector],
+                           using: {
+                             tsearch: {
+                               dictionary: 'simple',
+                               tsvector_column: 'search_vector',
+                               prefix: true
+                             }
+                           }
 
   def total_vat
     invoice_items.sum(&:vat)

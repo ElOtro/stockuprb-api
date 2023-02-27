@@ -31,7 +31,7 @@ module Queries
     end
 
     def search(scope, query = nil)
-      query ? scope.search(query) : scope
+      query.present? ? scope.search(query) : scope
     end
 
     def sort_column(scope, sort, direction)
