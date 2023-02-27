@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount Rswag::Ui::Engine => '/api-docs'
+  mount Rswag::Api::Engine => '/api-docs'
   scope 'v1', defaults: { format: :json } do
     devise_for :users, defaults: { format: :json }, path: '',
                        path_names: { sign_in: 'auth', sign_out: 'auth', registration: 'users' },

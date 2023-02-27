@@ -1,0 +1,20 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/invoices.json":
+    $ref: 'invoices.yaml'
+servers:
+  - url: "{protocol}://{server}"
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default: http
+      server:
+        enum:
+          - localhost:4000/v1
+        default: localhost:4000/v1
