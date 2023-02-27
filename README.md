@@ -8,7 +8,7 @@ Database schema: <a href="https://github.com/ElOtro/stockuprb-api/blob/master/er
 
 If you are comfortable with Postman, download collection <a href="StockUp.postman_collection.json">StockUp</a>
 
-## Highlihts
+## Highlights
 
 - Rspec
 - Devise
