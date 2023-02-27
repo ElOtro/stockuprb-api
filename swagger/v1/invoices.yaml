@@ -1,0 +1,62 @@
+---
+    get:
+      description: List of Invoices
+      tags:
+      - Invoices
+      parameters:
+      - name: page
+        in: query
+        type: number
+        required: false
+        description: Page number
+      - name: limit
+        in: query
+        schema:
+          type: number
+        required: false
+        description: Limit on page
+      - name: sort
+        in: query
+        schema:
+          type: string
+          default: created_at
+        required: false
+        description: Attribute for sort
+      - name: direction
+        in: query
+        schema:
+          type: string
+          default: desc
+          enum:
+            - asc
+            - desc
+        required: false
+        description: Sort direction
+      - name: user_id
+        in: query
+        schema:
+          type: number
+        required: false
+        description: User ID
+      - name: organisation_id
+        in: query
+        schema:
+          type: number
+        required: false
+        description: Organisation ID
+      - name: company_id
+        in: query
+        schema:
+          type: number
+        required: false
+        description: Company ID
+      - name: search
+        in: query
+        schema:
+          type: string
+        required: false
+        description: Search by company name, agreement name, number
+      responses:
+        '200':
+          description: List of Invoices
+    

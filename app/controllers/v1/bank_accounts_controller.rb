@@ -1,4 +1,5 @@
 class V1::BankAccountsController < V1::BaseController
+  before_action :authenticate_user!
   before_action :set_organisation
   before_action :set_bank_account, only: [:show, :update, :destroy]
 

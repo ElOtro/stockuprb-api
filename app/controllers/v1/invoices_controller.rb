@@ -5,9 +5,7 @@ class V1::InvoicesController < V1::BaseController
   # GET /invoices
   def index
     @invoices = Invoice.includes(:organisation, :bank_account, :company, :agreement, :project, :user)
-    @invoices = AllInvoicesQuery.new(@invoices).call(filter_params)
-    @invoices = @invoices.page(params[:page]).per(params[:limit])
-
+    @invoices = ::Queries::Invoices.new(@invoices).call(filter_params)
     @meta = pagination_dict(@invoices)
   end
 
@@ -16,7 +14,7 @@ class V1::InvoicesController < V1::BaseController
 
   # POST /invoices
   def create
-    # DO NOT DO THIS! 
+    # DO NOT DO THIS!
     # if params[:invoice].has_key?('invoice_items')
     #   params[:invoice][:invoice_items_attributes] =
     #     params[:invoice].delete(:invoice_items)
@@ -64,7 +62,7 @@ class V1::InvoicesController < V1::BaseController
 
   # Only allow a list of trusted parameters through.
   def filter_params
-    params.permit(:format, :user_id, :organisation_id, :search, :sort, :direction, :page, :limit)
+    params.permit(:format, :user_id, :organisation_id, :company_id, :search, :sort, :direction, :page, :limit)
   end
 
   def invoice_params

@@ -1,4 +1,5 @@
 class V1::InvoiceItemsController < V1::BaseController
+  before_action :authenticate_user!
   before_action :set_invoice
   before_action :set_invoice_item, only: %i[show update destroy]
 

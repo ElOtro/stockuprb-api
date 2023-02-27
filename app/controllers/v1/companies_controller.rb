@@ -1,4 +1,5 @@
 class V1::CompaniesController < V1::BaseController
+  before_action :authenticate_user!
   before_action :set_company, only: %i[show update destroy]
 
   # GET /companies

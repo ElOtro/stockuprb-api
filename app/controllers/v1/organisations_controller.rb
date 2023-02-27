@@ -1,4 +1,5 @@
 class V1::OrganisationsController < V1::BaseController
+  before_action :authenticate_user!
   before_action :set_organisation, only: %i[show update destroy]
 
   # GET /organisations

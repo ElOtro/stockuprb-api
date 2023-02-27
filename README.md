@@ -8,7 +8,7 @@ Database schema: <a href="https://github.com/ElOtro/stockuprb-api/blob/master/er
 
 If you are comfortable with Postman, download collection <a href="StockUp.postman_collection.json">StockUp</a>
 
-## Dependencies
+## Highlihts
 
 - Rspec
 - Devise
@@ -16,15 +16,16 @@ If you are comfortable with Postman, download collection <a href="StockUp.postma
 - PostgreSQL
 - Kaminari
 - JWT
+- Full text search in Invoices, Products using PostgreSQL tsvector
 
 ## How to run
 
 docker compose build
-docker compose run --rm web bin/rails db:setup
+docker compose run --rm web bin/rails db:migrate
 docker compose up
 
 If you want to fill database tables with test data, run: 
-rake db:seed
+docker compose run --rm web bin/rails db:seed
 
 ## FAQ
 
@@ -38,6 +39,5 @@ To store "history" changing company contacts.
 
 ## TODO
 
-- Dockerize
 - Project stages
 - Printable invoice in PDF (Prawn) 
