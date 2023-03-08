@@ -13,121 +13,161 @@ require 'faker'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/v1/companies", type: :request do
-  let (:user) { create_user }
+RSpec.describe V1::CompaniesController, type: :request do
   # This should return the minimal set of attributes required to create a valid
   # Company. As you add validations to Company, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
+  let(:valid_attributes) do
     { name: Faker::Company.name, full_name: Faker::Company.name, details: { inn: Faker::Company.russian_tax_number } }
-  }
+  end
 
-  let(:invalid_attributes) {
+  let(:invalid_attributes) do
     { name: nil, full_name: Faker::Company.name, details: { inn: Faker::Company.russian_tax_number } }
-  }
+  end
 
   # This should return the minimal set of values that should be in the headers
   # in order to pass any filters (e.g. authentication) defined in
   # CompaniesController, or in your router and rack
   # middleware. Be sure to keep this updated too.
-  let(:valid_headers) {
-    {}
-  }
-
-  describe "GET /index" do
-    before do
-      puts "user.id: #{user.id}"
-      login_with_api(user)
-    end
-    it "renders a successful response" do
-      Company.create! valid_attributes
-      get "/v1/companies", headers: valid_headers, as: :json
-      expect(response).to be_successful
-    end
-  end
-
-  describe "GET /show" do
-    it "renders a successful response" do
-      company = Company.create! valid_attributes
-      get "/v1/companies/#{company.id}", as: :json
-      expect(response).to be_successful
-    end
-  end
-
-  describe "POST /create" do
-    context "with valid parameters" do
-      it "creates a new Company" do
-        expect {
-          post "/v1/companies",
-               params: { company: valid_attributes }, headers: valid_headers, as: :json
-        }.to change(Company, :count).by(1)
+  let(:user) { create_user }
+  let(:sign_in_url) { '/v1/auth' }
+  
+  describe 'GET /index' do
+    context 'When get companies' do
+      before do
+        sign_in_with_api(user)
       end
 
-      it "renders a JSON response with the new company" do
-        post "/v1/companies",
-             params: { company: valid_attributes }, headers: valid_headers, as: :json
+      it 'returns 200' do
+        expect(response.status).to eq(200)
+      end
+    end
+  end
+
+  describe 'GET /show' do
+    context 'When get company' do
+      before do
+        sign_in_with_api(user)
+      end
+
+      it 'renders a successful response' do
+        company = Company.create! valid_attributes
+        get v1_company_url(company), headers: { 'Authorization': "Bearer #{json['token']}" }, as: :json
+        expect(response.status).to eq(200)
+      end
+    end
+  end
+
+  describe 'POST /create' do
+    context 'with valid parameters' do
+      before do
+        sign_in_with_api(user)
+      end
+
+      it 'creates a new Company' do
+        expect do
+          post '/v1/companies',
+               params: { company: valid_attributes },
+               headers: { 'Authorization': "Bearer #{json['token']}" },
+               as: :json
+        end.to change(Company, :count).by(1)
+      end
+
+      it 'renders a JSON response with the new company' do
+        post '/v1/companies',
+             params: { company: valid_attributes },
+             headers: { 'Authorization': "Bearer #{json['token']}" },
+             as: :json
         expect(response).to have_http_status(:created)
-        expect(response.content_type).to match(a_string_including("application/json"))
+        expect(response.content_type).to match(a_string_including('application/json'))
       end
     end
 
-    context "with invalid parameters" do
-      it "does not create a new Company" do
-        expect {
-          post "/v1/companies",
-               params: { company: invalid_attributes }, as: :json
-        }.to change(Company, :count).by(0)
+    context 'with invalid parameters' do
+      before do
+        sign_in_with_api(user)
       end
 
-      it "renders a JSON response with errors for the new company" do
-        post "/v1/companies",
-             params: { company: invalid_attributes }, headers: valid_headers, as: :json
+      it 'does not create a new Company' do
+        expect do
+          post '/v1/companies',
+               params: { company: invalid_attributes },
+               headers: { 'Authorization': "Bearer #{json['token']}" }, 
+               as: :json
+        end.to change(Company, :count).by(0)
+      end
+
+      it 'renders a JSON response with errors for the new company' do
+        post '/v1/companies',
+             params: { company: invalid_attributes }, 
+             headers: { 'Authorization': "Bearer #{json['token']}" }, 
+             as: :json
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(response.content_type).to match(a_string_including("application/json"))
+        expect(response.content_type).to match(a_string_including('application/json'))
       end
     end
   end
 
-  describe "PATCH /update" do
-    context "with valid parameters" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+  describe 'PATCH /update' do
+    context 'with valid parameters' do
+      before do
+        sign_in_with_api(user)
+      end
 
-      it "updates the requested company" do
+      let(:new_attributes) do
+        { name: Faker::Company.name }
+      end
+
+      it 'updates the requested company' do
         company = Company.create! valid_attributes
         patch v1_company_url(company),
-              params: { company: new_attributes }, headers: valid_headers, as: :json
+              params: { company: new_attributes }, 
+              headers: { 'Authorization': "Bearer #{json['token']}" },  
+              as: :json
         company.reload
-        skip("Add assertions for updated state")
+        expect(company.name).to eq(new_attributes[:name])
       end
 
-      it "renders a JSON response with the company" do
+      it 'renders a JSON response with the company' do
         company = Company.create! valid_attributes
         patch v1_company_url(company),
-              params: { company: new_attributes }, headers: valid_headers, as: :json
+              params: { company: new_attributes }, 
+              headers: { 'Authorization': "Bearer #{json['token']}" }, 
+              as: :json
         expect(response).to have_http_status(:ok)
-        expect(response.content_type).to match(a_string_including("application/json"))
+        expect(response.content_type).to match(a_string_including('application/json'))
       end
     end
 
-    context "with invalid parameters" do
-      it "renders a JSON response with errors for the company" do
+    context 'with invalid parameters' do
+      before do
+        sign_in_with_api(user)
+      end
+
+      it 'renders a JSON response with errors for the company' do
         company = Company.create! valid_attributes
         patch v1_company_url(company),
-              params: { company: invalid_attributes }, headers: valid_headers, as: :json
+              params: { company: invalid_attributes }, 
+              headers: { 'Authorization': "Bearer #{json['token']}" },  
+              as: :json
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(response.content_type).to match(a_string_including("application/json"))
+        expect(response.content_type).to match(a_string_including('application/json'))
       end
     end
   end
 
-  describe "DELETE /destroy" do
-    it "destroys the requested company" do
+  describe 'DELETE /destroy' do
+    before do
+      sign_in_with_api(user)
+    end
+
+    it 'destroys the requested company' do
       company = Company.create! valid_attributes
-      expect {
-        delete v1_company_url(company), headers: valid_headers, as: :json
-      }.to change(Company, :count).by(-1)
+      expect do
+        delete v1_company_url(company), 
+        headers: { 'Authorization': "Bearer #{json['token']}" }, 
+        as: :json
+      end.to change(Company, :count).by(-1)
     end
   end
 end

@@ -1,5 +1,5 @@
 class V1::InvoicesController < V1::BaseController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
   before_action :set_invoice, only: %i[show update destroy]
 
   # GET /invoices
@@ -20,7 +20,7 @@ class V1::InvoicesController < V1::BaseController
     #     params[:invoice].delete(:invoice_items)
     # end
     @invoice = Invoice.new(invoice_params)
-    @invoice.user = current_user
+    # @invoice.user = current_user
 
     if @invoice.save
       render :show, status: :created

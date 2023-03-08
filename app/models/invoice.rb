@@ -8,9 +8,8 @@ class Invoice < ApplicationRecord
   belongs_to :user, optional: true
   has_many :invoice_items, dependent: :destroy
   accepts_nested_attributes_for :invoice_items, allow_destroy: true
-  validates :organisation, :bank_account, :company, :agreement, presence: true
 
-  before_save :set_total
+  # before_save :set_total
 
   delegate :name, to: :organisation, allow_nil: true, prefix: true
   delegate :name, to: :company, allow_nil: true, prefix: true

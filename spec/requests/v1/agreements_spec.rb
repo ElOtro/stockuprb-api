@@ -27,14 +27,6 @@ RSpec.describe "/v1/agreements", type: :request do
     {start_at: DateTime.now() - 5.months, end_at: nil, name: nil}
   }
 
-  # This should return the minimal set of values that should be in the headers
-  # in order to pass any filters (e.g. authentication) defined in
-  # AgreementsController, or in your router and rack
-  # middleware. Be sure to keep this updated too.
-  let(:valid_headers) {
-    {}
-  }
-
   describe "GET /index" do
     before do
       login_with_api(user)

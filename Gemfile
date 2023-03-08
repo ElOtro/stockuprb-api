@@ -45,10 +45,11 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'multi_json'
 gem "rubocop-rails", require: false
 gem "rubocop-rspec", require: false
 gem 'devise'
-gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
+gem 'faker'
 gem 'jwt'
 gem 'kaminari'
 gem 'rswag'

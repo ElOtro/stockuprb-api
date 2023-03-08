@@ -55,12 +55,15 @@ RSpec.describe "/v1/invoices", type: :request do
     end
 
     context "with valid parameters" do
-      it "creates a new Invoice" do
+      it "a new Invoice" do
         puts "-----------valid? ---------"
         puts invoice.valid?
-        puts invoice.inspect 
+        puts invoice.inspect
+        puts "-----------valid_attributes? ---------" 
+        puts valid_attributes
 
         post "/v1/invoices", params: { invoice: valid_attributes }, as: :json
+        puts JSON.parse(response.body)['errors']
         expect(response).to have_http_status(302)
         # expect {
         #   post v1_invoices_url,
